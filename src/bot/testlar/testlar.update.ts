@@ -23,9 +23,4 @@ export class TestlarUpdate {
     async orqaga(ctx:Context) {
         return this.testlarService.orqaga(ctx)
     }
-
-    @Action("start")
-    async boshlangich(ctx:Context) {
-        return this.testlarService.boshlangich(ctx)
-    }
 }

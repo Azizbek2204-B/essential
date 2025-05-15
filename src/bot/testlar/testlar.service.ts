@@ -4,9 +4,7 @@ import { BotService } from "../bot.service";
 
 @Injectable()
 export class TestlarService {
-  constructor(
-    private readonly botService: BotService
-  ) {}
+  constructor(private readonly botService: BotService) {}
 
   async start(ctx: Context) {
     await ctx.replyWithHTML(
@@ -230,7 +228,7 @@ botdan foydalaning va lug'atlaringizni hech kimning yordamisiz yodlang!
               },
             ],
             [
-                {
+              {
                 text: "Sozlamalar",
                 callback_data: "sozlamalar",
               },
@@ -244,22 +242,26 @@ botdan foydalaning va lug'atlaringizni hech kimning yordamisiz yodlang!
                 text: "🔙Orqaga",
                 callback_data: "orqaga",
               },
-            ]
+            ],
           ],
         },
       }
     );
   }
 
-  async orqaga(ctx: Context){
-    const contextMessage = ctx.callbackQuery!["testlar"];
-    await ctx.deleteMessage(contextMessage?.message_id);
-    this.start(ctx)
+  async againTestlar(ctx: Context) {
+    
   }
 
-  async boshlangich(ctx: Context){
+  async orqaga(ctx: Context) {
+    const contextMessage = ctx.callbackQuery!["testlar"];
+    await ctx.deleteMessage(contextMessage?.message_id);
+    this.start(ctx);
+  }
+
+  async boshlangich(ctx: Context) {
     const contextMessage = ctx.callbackQuery!["start"];
     await ctx.deleteMessage(contextMessage?.message_id);
-    this.botService.boshlangich(ctx, `🏠 Asosiy menyu`)
+    this.botService.boshlangich(ctx, `🏠 Asosiy menyu`);
   }
 }
