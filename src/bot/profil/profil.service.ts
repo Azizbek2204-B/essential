@@ -1,9 +1,13 @@
 import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/sequelize";
 import { Context, Markup } from "telegraf";
+import { Client } from "../models/client.model";
 
 @Injectable()
 export class ProfilService {
-  constructor() {}
+  constructor(
+    @InjectModel(Client) private readonly clientModel: typeof Client
+  ) {}
 
   async start(ctx: Context) {
     await ctx.replyWithHTML(
@@ -18,5 +22,18 @@ export class ProfilService {
           .resize(),
       }
     );
+  }
+
+  async malumotlarim(ctx: Context) {
+    const id = ctx.from!.id
+    const client = await this.clientModel.findOne({
+      where:{
+        id
+      }
+    });
+    console.log(client);
+    await ctx.replyWithHTML(
+      `${client}`
+    )
   }
 }

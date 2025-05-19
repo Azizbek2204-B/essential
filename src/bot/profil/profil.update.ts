@@ -10,4 +10,9 @@ export class ProfilUpdate {
   async start(ctx: Context) {
     return this.profilService.start(ctx);
   }
+
+  @Hears("📝 Ma'lumotlarim")
+  async malumotlarim(ctx: Context) {
+    return this.profilService.malumotlarim(ctx);
+  }
 }

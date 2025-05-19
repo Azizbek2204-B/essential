@@ -3,6 +3,7 @@ import { BotModule } from "./bot/bot.module";
 import { ConfigModule } from "@nestjs/config";
 import { TelegrafModule } from "nestjs-telegraf";
 import { SequelizeModule } from "@nestjs/sequelize";
+import { Client } from "./bot/models/client.model";
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { SequelizeModule } from "@nestjs/sequelize";
       username: process.env.PG_USER,
       password: process.env.PG_PASSWORD,
       database: process.env.PG_DB,
-      models: [],
+      models: [Client],
       autoLoadModels: true,
       sync: { alter: true },
       logging: false,
