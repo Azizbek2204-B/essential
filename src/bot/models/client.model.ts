@@ -1,8 +1,8 @@
 import { Column, DataType, Model, Table } from "sequelize-typescript";
 
-
 interface IClientCreationAttr{
     name:string,
+    id_telegram:number
 }
 
 @Table({tableName:"client"})
@@ -15,6 +15,11 @@ export class Client extends Model<Client,IClientCreationAttr>{
         primaryKey:true
     })
     declare id:number
+
+    @Column({
+        type:DataType.BIGINT,
+    })
+    declare id_telegram:number
 
     @Column({
         type:DataType.STRING,
@@ -38,7 +43,7 @@ export class Client extends Model<Client,IClientCreationAttr>{
     declare proposer:string
 
     @Column({
-        type:DataType.STRING,
+        type:DataType.BIGINT,
     })
-    declare offer_link:string
+    declare coins:number
 }

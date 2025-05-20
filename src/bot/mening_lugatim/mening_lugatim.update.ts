@@ -1,5 +1,3 @@
-import { Inject } from "@nestjs/common";
-import { InjectModel } from "@nestjs/sequelize";
 import { Hears, Update } from "nestjs-telegraf";
 import { Context } from "telegraf";
 import { MeningLugatimService } from "./mening_lugatim.service";

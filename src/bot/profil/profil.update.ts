@@ -1,4 +1,4 @@
-import { Hears, Update } from "nestjs-telegraf";
+import { Action, Hears, On, Update } from "nestjs-telegraf";
 import { ProfilService } from "./profil.service";
 import { Context } from "telegraf";
 
@@ -14,5 +14,30 @@ export class ProfilUpdate {
   @Hears("📝 Ma'lumotlarim")
   async malumotlarim(ctx: Context) {
     return this.profilService.malumotlarim(ctx);
+  }
+
+  // @Action("name")
+  // async name(ctx: Context) {
+  //   return this.profilService.name(ctx);
+  // }
+
+  @Action("phone")
+  async phone(ctx: Context) {
+    return this.profilService.phone(ctx);
+  }
+
+  @On("contact")
+  async contact(ctx: Context) {
+    return this.profilService.contact(ctx);
+  }
+
+  @Action("lang")
+  async lang(ctx: Context) {
+    return this.profilService.lang(ctx);
+  }
+
+  @Hears("🔗 Taklif havolam")
+  async offer_link(ctx: Context) {
+    return this.profilService.offer_link(ctx);
   }
 }

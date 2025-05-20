@@ -14,9 +14,14 @@ export class BotService {
   }
 
   async boshlangich(ctx: Context, messageText: string) {
-    await this.clientModel.create({
-      name: ctx.from!.first_name
-    })
+    const id = ctx.from!.id
+    const client = await this.clientModel.findOne({where: {id_telegram: id}})
+    if (client == null) {
+      await this.clientModel.create({
+        name: ctx.from!.first_name,
+        id_telegram: id
+      });
+    }
     await ctx.replyWithHTML(messageText, {
       ...Markup.keyboard([
         ["♻️ Testlar", "📕 Mening lug'atim"],
@@ -24,8 +29,8 @@ export class BotService {
         ["⬇️ Yuklab olish", "👤 Profil"],
         ["Admin bilan bog'lanish"],
       ])
-      .oneTime()
-      .resize()
+        .oneTime()
+        .resize(),
     });
   }
 }
